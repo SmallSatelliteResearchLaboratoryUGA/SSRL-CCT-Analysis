@@ -1,0 +1,14 @@
+# Ignore IntelliJ IDEA project files
+.idea/
+*.iml
+out/
+*.ipr
+*.iws
+
+# Ignore build directories
+target/
+build/
+
+# Ignore logs and generated files
+logs/
+*.log
