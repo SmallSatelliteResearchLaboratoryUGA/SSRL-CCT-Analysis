@@ -16,13 +16,11 @@ final_df = pd.concat(dataframes, ignore_index=True)
 #replace columns with better name
 final_df.columns = final_df.columns.str.replace("obsw.cdh.telemetry.DataPool.platform.", "", regex=False)
 
-for col in final_df.columns:
-    print(col)
 
 #everything which is 1 either requires no multiplication or I need mor einfo before multiplying
 # all battery currents and voltages need to be checked
-EPSconstants = {"BAT1.batteryCurrent[0].value": 1, "BAT1.batteryCurrent[1].value": 1, "BAT1.batteryCurrent[2].value": 1,
-                "BAT1.batteryVoltage[0].value": 1, "BAT1.batteryVoltage[1].value": 1, "BAT1.batteryVoltage[2].value": 1,
+EPSconstants = {"BAT1.batteryCurrent[0].value": 0.005237, "BAT1.batteryCurrent[1].value": 0.005327, "BAT1.batteryCurrent[2].value": 0.00207,
+                "BAT1.batteryVoltage[0].value": 0.004311, "BAT1.batteryVoltage[1].value": 0.005685, "BAT1.batteryVoltage[2].value": 0.01349,
                 "EPS.switchCurrents[0].value": 0.001328, "EPS.switchCurrents[1].value": 0.001328, "EPS.switchCurrents[2].value": 0.001328,
                 "EPS.switchCurrents[3].value": 0.001328, "EPS.switchCurrents[4].value": 0.001328, "EPS.switchCurrents[5].value": 0.001328,
                 "EPS.switchCurrents[6].value": 0.001328, "EPS.switchCurrents[7].value": 0.001328, "EPS.switchCurrents[8].value": 0.001328,
@@ -38,8 +36,21 @@ EPSconstants = {"BAT1.batteryCurrent[0].value": 1, "BAT1.batteryCurrent[1].value
 EPScolumns = list(EPSconstants.keys())
 final_df[EPScolumns] *= pd.Series(EPSconstants)
 
-print(final_df.head())
-
 #split dataframe into charge and discharge dataframe using time (before 7:30 pm/19:30 is charge, after is discharge)
 charge_df = final_df[final_df["Reception time"] < "19:30"]
 discharge_df = final_df[final_df["Reception time"] >= "19:30"]
+
+# Define output directory and file path
+output_dir = "output"
+output_file = os.path.join(output_dir, "charge.csv")
+output_file2 = os.path.join(output_dir, "discharge.csv")
+
+# Create directory if it doesn't exist
+os.makedirs(output_dir, exist_ok=True)
+
+# Save DataFrame as CSV
+charge_df.to_csv(output_file, index=False)
+discharge_df.to_csv(output_file2, index=False)
+
+print(f"Charge DataFrame saved to {output_file}")
+print(f"Discharge DataFrame saved to {output_file2}")
