@@ -29,10 +29,10 @@ EPSconstants = {"BAT1.batteryCurrent[0].value": 1, "BAT1.batteryCurrent[1].value
                 "EPS.switchCurrents[9].value": 0.001328, "EPS.switchVoltages[0].value": 0.01349, "EPS.switchVoltages[1].value": 0.01349,
                 "EPS.switchVoltages[2].value": 0.008993, "EPS.switchVoltages[3].value": 0.008993, "EPS.switchVoltages[4].value": 0.005865,
                 "EPS.switchVoltages[5].value": 0.005865, "EPS.switchVoltages[6].value": 0.005865, "EPS.switchVoltages[7].value": 0.004311,
-                "EPS.switchVoltages[8].value": 0.004311, "EPS.switchVoltages[9].value": 0.004311, "EPS.busCurrents[0].value": 1,
-                "EPS.busCurrents[1].value": 1, "EPS.busCurrents[2].value": 1, "EPS.busCurrents[3].value": 1,
-                "EPS.busVoltages[0].value": 1, "EPS.busVoltages[1].value": 1, "EPS.busVoltages[2].value": 1,
-                "EPS.busVoltages[3].value": 1, "EPS.BcrOutputCurrent.value": 14.662757, "EPS.BcrOutputVoltage.value": 0.008993157}
+                "EPS.switchVoltages[8].value": 0.004311, "EPS.switchVoltages[9].value": 0.004311, "EPS.busCurrents[0].value": 0.005237,
+                "EPS.busCurrents[1].value": 0.005237, "EPS.busCurrents[2].value": 0.005237, "EPS.busCurrents[3].value": 0.00207,
+                "EPS.busVoltages[0].value": 0.008978, "EPS.busVoltages[1].value": 0.004311, "EPS.busVoltages[2].value": 0.005865,
+                "EPS.busVoltages[3].value": 0.01349, "EPS.BcrOutputCurrent.value": 14.662757, "EPS.BcrOutputVoltage.value": 0.008993157}
 
 #multiply only selected columsn by the EPS constants
 EPScolumns = list(EPSconstants.keys())
